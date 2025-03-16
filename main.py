@@ -24,7 +24,6 @@ def main():
 
     asteroid_field = AsteroidField()
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-
     dt = 0
 
     while True:
@@ -37,6 +36,14 @@ def main():
             if asteroid.checkCollision(player):
                 print("Game over!")
                 sys.exit()
+            
+            for shot in shots:
+                if asteroid.checkCollision(shot):
+                    asteroid.split()
+                    shot.kill()
+
+            
+
 
         screen.fill("black")
         for obj in drawable:
